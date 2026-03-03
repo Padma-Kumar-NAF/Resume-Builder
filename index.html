@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Builder</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="site-header">
+    <h1>Resume Builder</h1>
+  </header>
+
+  <div class="container my-4">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <form id="resumeForm" novalidate>
+
+          <div class="card mb-4">
+            <div class="card-header">👤 Personal Information</div>
+            <div class="card-body">
+              <div class="row g-3">
+
+                <div class="col-md-6">
+                  <label class="form-label" for="fullName">
+                    Full Name <span class="text-danger">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="fullName"
+                    placeholder="e.g. John Smith"
+                  />
+                  <div class="invalid-msg" id="err-fullName">
+                    Please enter your full name.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label" for="role">
+                    Job Title <span class="text-danger">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="role"
+                    placeholder="e.g. Web Developer"
+                  />
+                  <div class="invalid-msg" id="err-role">
+                    Please enter your job title.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label" for="phone">
+                    Phone <span class="text-danger">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="phone"
+                    placeholder="e.g. +91 9876543210"
+                  />
+                  <div class="invalid-msg" id="err-phone">
+                    Enter a valid phone (min 10 digits).
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label" for="email">
+                    Email <span class="text-danger">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="e.g. john@gmail.com"
+                  />
+                  <div class="invalid-msg" id="err-email">
+                    Enter a valid email address.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label" for="location">Location</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="location"
+                    placeholder="e.g. Mumbai, India"
+                  />
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label" for="linkedin">LinkedIn URL</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="linkedin"
+                    placeholder="linkedin.com/in/yourname"
+                  />
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label" for="github">
+                    GitHub / Portfolio URL
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="github"
+                    placeholder="github.com/yourname"
+                  />
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label" for="summary">
+                    Profile Summary <span class="text-danger">*</span>
+                    <small class="text-muted" id="summaryCount">(0 / 500)</small>
+                  </label>
+                  <textarea
+                    class="form-control"
+                    id="summary"
+                    rows="3"
+                    maxlength="500"
+                    placeholder="Write a short professional summary..."
+                  ></textarea>
+                  <div class="invalid-msg" id="err-summary">
+                    Please write a profile summary.
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-header">🛠️ Skills</div>
+            <div class="card-body">
+              <div class="input-group mb-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="skillInput"
+                  placeholder="Type a skill, e.g. JavaScript"
+                />
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="addSkill()"
+                >
+                  + Add
+                </button>
+              </div>
+              <div id="skillsContainer"></div>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-header">Experience</div>
+            <div class="card-body">
+              <button
+                type="button"
+                class="btn btn-outline-primary mb-3"
+                onclick="addExperience()"
+              >
+                + Add Experience
+              </button>
+              <div id="expContainer"></div>
+            </div>
+          </div>
+
+
+          <div class="card mb-4">
+            <div class="card-header">Education</div>
+            <div class="card-body">
+              <button
+                type="button"
+                class="btn btn-outline-primary mb-3"
+                onclick="addEducation()"
+              >
+                + Add Education
+              </button>
+              <div id="eduContainer"></div>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-header">Projects</div>
+            <div class="card-body">
+              <button
+                type="button"
+                class="btn btn-outline-primary mb-3"
+                onclick="addProject()"
+              >
+                + Add Project
+              </button>
+              <div id="projContainer"></div>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-header">Certifications</div>
+            <div class="card-body">
+              <div class="input-group mb-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="certInput"
+                  placeholder="e.g. AWS Certified Developer"
+                />
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="addCertification()"
+                >
+                  + Add
+                </button>
+              </div>
+              <div id="certContainer"></div>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-header">Languages</div>
+            <div class="card-body">
+              <div class="input-group mb-2">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="langInput"
+                  placeholder="e.g. English (Fluent)"
+                />
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="addLanguage()"
+                >
+                  + Add
+                </button>
+              </div>
+              <div id="langContainer"></div>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-header">Hobbies</div>
+            <div class="card-body">
+              <input
+                type="text"
+                class="form-control"
+                id="hobbies"
+                placeholder="e.g. Reading, Coding, Music  (comma separated)"
+              />
+            </div>
+          </div>
+
+
+          <div class="d-flex gap-2 flex-wrap mb-5">
+            <button type="submit" class="btn btn-success px-4">
+              Generate Resume
+            </button>
+            <button
+              type="button"
+              class="btn btn-warning"
+              onclick="saveToLocalStorage()"
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              class="btn btn-info text-white"
+              onclick="loadFromLocalStorage()"
+            >
+              Load Saved
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="resetForm()"
+            >
+              Reset
+            </button>
+          </div>
+
+        </form>
+      </div>
+      <div class="col-lg-6">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0">Resume Preview</h5>
+          <div class="d-flex gap-2">
+            <button
+              class="btn btn-outline-secondary btn-sm"
+              onclick="window.print()"
+            >
+              Print
+            </button>
+            <button
+              class="btn btn-dark btn-sm"
+              onclick="downloadPDF()"
+            >
+              Download PDF
+            </button>
+          </div>
+        </div>
+
+        <div id="preview">
+          <div class="text-center py-5 text-muted border rounded">
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  </body>
+
+   <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  ></script>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+  ></script>
+  <script src="./script.js"></script>
+</html>
